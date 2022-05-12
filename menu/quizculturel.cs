@@ -11,10 +11,10 @@ using System.Windows.Forms;
 namespace menu
 {
     public partial class quizculturel : Form
-    {
-        int reponse_correct = 1;
-        int nbquestion = 0;
-        int score = 0;
+    {   //l'appel de cette classe fait lorsque en trouve deux carte differents
+        int reponse_correct = 1; //numero de question correcte 
+        int nbquestion = 0; //les nombres des question que je voudrais l'affichier 
+        int score = 0; //score de question juste
         public quizculturel()
         {
             InitializeComponent();
@@ -22,7 +22,7 @@ namespace menu
         }
 
         private void verifier_question(object sender, EventArgs e)
-        {
+        {   //est une fonction verifie la reponse juste ou non 
             var senderObject = (Button)sender;
             int ButtonTag = Convert.ToInt32(senderObject.Tag);
             if (ButtonTag == reponse_correct)
@@ -54,7 +54,7 @@ namespace menu
 
         }
         private void poser_question(int q)
-        {
+        {   //est une fonction que contient 100 question et un nombre aleatoire
             Random aleatoire = new Random();
             q = aleatoire.Next(1, 80);
             switch (q)

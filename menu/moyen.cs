@@ -64,8 +64,8 @@ namespace menu
 
         private void LoadPictures()
         {
-            int leftPos = 80;
-            int topPos = 80;
+            int leftPos = 250;
+            int topPos = 180;
             int rows = 0;
 
             for (int i = 0; i < 12; i++)
@@ -73,7 +73,7 @@ namespace menu
                 PictureBox newPic = new PictureBox();
                 newPic.Height = 100;
                 newPic.Width = 100;
-                newPic.BackColor = Color.CadetBlue;
+                newPic.BackColor = Color.SkyBlue;
                 newPic.SizeMode = PictureBoxSizeMode.StretchImage;
                 newPic.Click += newPic_Click;
                 picturs.Add(newPic);
@@ -90,7 +90,7 @@ namespace menu
 
                 if (rows == 4)
                 {
-                    leftPos = 80;
+                    leftPos = 250;
                     topPos += 140;
                     rows = 0;
                 }
@@ -207,6 +207,18 @@ namespace menu
             GameTimer.Stop();
             gameOver = true;
             MessageBox.Show(msg + " Click Restart to ", "Moo Says: ");
+            //fermer la quizz math
+            quizmath.ActiveForm.Close();
+            //fermer la class moyen
+            moyen.ActiveForm.Close();
+            //affichier la class play 
+            var newform2 = new Play();
+            newform2.Show();
+
+        }
+
+        private void lblStatues_Click(object sender, EventArgs e)
+        {
 
         }
     }

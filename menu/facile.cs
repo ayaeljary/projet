@@ -12,16 +12,17 @@ namespace menu
 {
     public partial class facile : Form
     {
-        List<int> numbers = new List<int> { 1, 1, 2, 2 };
-        string firstChoice;
-        string secondChoice;
+        List<int> numbers = new List<int> { 1, 1, 2, 2,3,3 };
+        string premierchois;//le premier chois d,un carte 
+        string deuxemechois;//le deauxieme chois d'un carte
         int tries;
-        List<PictureBox> picturs = new List<PictureBox>();
-        PictureBox picA;
-        PictureBox picB;
-        int totalTime = 30;
-        int countDownTime;
+        List<PictureBox> image = new List<PictureBox>();
+        PictureBox imA;
+        PictureBox imB;
+        int totalTime = 30;//le temps pour finir le jaux 
+        int countDownTime;//le conteur qui diminue au cours du temps 
         bool gameOver = false;
+        
         public facile()
         {
             InitializeComponent();
@@ -43,7 +44,7 @@ namespace menu
             if (countDownTime < 1)
             {
                 GameOver("Time Up, You Lose");
-                foreach (PictureBox x in picturs)
+                foreach (PictureBox x in image)
                 {
                     if (x.Tag != null)
                     {
@@ -61,21 +62,21 @@ namespace menu
 
         private void LoadPictures()
         {
-            int leftPos = 80;
-            int topPos = 80;
+            int leftPos = 250;
+            int topPos = 180;
             int rows = 0;
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 6; i++)
             {
                 PictureBox newPic = new PictureBox();
                 newPic.Height = 100;
                 newPic.Width = 100;
-                newPic.BackColor = Color.CadetBlue;
+                newPic.BackColor = Color.SkyBlue;
                 newPic.SizeMode = PictureBoxSizeMode.StretchImage;
                 newPic.Click += newPic_Click;
-                picturs.Add(newPic);
+                image.Add(newPic);
 
-                if (rows < 2)
+                if (rows < 3)
                 {
                     rows++;
                     newPic.Left = leftPos;
@@ -85,9 +86,9 @@ namespace menu
 
                 }
 
-                if (rows == 2)
+                if (rows == 3)
                 {
-                    leftPos = 80;
+                    leftPos = 250;
                     topPos += 140;
                     rows = 0;
                 }
@@ -106,28 +107,28 @@ namespace menu
                 return;
             }
 
-            if (firstChoice == null)
+            if (premierchois == null)
             {
-                picA = sender as PictureBox;
-                if (picA.Tag != null && picA.Image == null)
+                imA = sender as PictureBox;
+                if (imA.Tag != null && imA.Image == null)
                 {
-                    picA.Image = Image.FromFile("pics/" + (String)picA.Tag + ".png");
-                    firstChoice = (string)picA.Tag;
+                    imA.Image = Image.FromFile("pics/" + (String)imA.Tag + ".png");
+                    premierchois = (string)imA.Tag;
                 }
             }
-            else if (secondChoice == null)
+            else if (deuxemechois == null)
             {
-                picB = sender as PictureBox;
-                if (picB.Tag != null && picB.Image == null)
+                imB = sender as PictureBox;
+                if (imB.Tag != null && imB.Image == null)
                 {
-                    picB.Image = Image.FromFile("pics/" + (string)picB.Tag + ".png");
-                    secondChoice = (string)picB.Tag;
+                    imB.Image = Image.FromFile("pics/" + (string)imB.Tag + ".png");
+                    deuxemechois = (string)imB.Tag;
                 }
             }
 
             else
             {
-                CheckPictures(picA, picB);
+                CheckPictures(imA, imB);
             }
 
 
@@ -142,10 +143,10 @@ namespace menu
             //assign the random list to the original
             numbers = randomList;
 
-            for (int i = 0; i < picturs.Count; i++)
+            for (int i = 0; i < image.Count; i++)
             {
-                picturs[i].Image = null;
-                picturs[i].Tag = numbers[i].ToString();
+                image[i].Image = null;
+                image[i].Tag = numbers[i].ToString();
             }
 
             tries = 0;
@@ -158,7 +159,7 @@ namespace menu
         }
         private void CheckPictures(PictureBox A, PictureBox B)
         {
-            if (firstChoice == secondChoice)
+            if (premierchois == deuxemechois)
             {
                 A.Tag = null;
                 B.Tag = null;
@@ -169,10 +170,10 @@ namespace menu
                 tries++;
                 lblStatues.Text = "Mismatched " + tries + " times.";
             }
-            firstChoice = null;
-            secondChoice = null;
+            premierchois = null;
+            deuxemechois = null;
 
-            foreach (PictureBox pics in picturs.ToList())
+            foreach (PictureBox pics in image.ToList())
             {
 
                 if (pics.Tag != null)
@@ -187,16 +188,20 @@ namespace menu
                 newform.Show();
 
             }
-             
+
+           
+
                 if (A.Tag != B.Tag )
             {
                 var newform = new quizculturel();
                 newform.Show();
             }
             // now lets check if all of the items have been solved 
-            if (picturs.All(o => o.Tag == picturs[0].Tag))
+            if (image.All(o => o.Tag == image[0].Tag))
             {  
                     GameOver("BRAVO!!");
+                //var newform2 = new Play();
+               // newform2.Show();
             }
         }
         private void GameOver(string msg)
@@ -204,8 +209,17 @@ namespace menu
             GameTimer.Stop();
             gameOver = true;
             MessageBox.Show(msg + " Click Restart to ", "Moo Says: ");
-
-            Application.Exit();
+            //fermer la quizz math
+            quizmath.ActiveForm.Close();
+            //fermer la class facile
+            facile.ActiveForm.Close();
+            //affichier la class play 
+            var newform2 = new Play();
+            newform2.Show();
+            
         }
+
+       
+        
     }
 }

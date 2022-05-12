@@ -12,6 +12,7 @@ namespace menu
 {
     public partial class quizmath : Form
     {
+        //meme raisonnement, dans le classe quizculturel, pour la classe quizmath mais l'appel de cette classe fait lorsque en trouve deux cartes identiques
 
         int reponse_correct = 1;
         int nbquestion = 0;
@@ -44,7 +45,7 @@ namespace menu
                     "Click OK  POUR RETOURNE A NOTRE JEUX GEUSSDIV"
                     );
 
-                facile.ActiveForm.Close();
+                quizmath.ActiveForm.Close();
                 nbquestion = 0;
                 poser_question(nbquestion);
             }

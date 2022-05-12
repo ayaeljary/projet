@@ -29,10 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(facile));
             this.GameTimer = new System.Windows.Forms.Timer(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.lblStatues = new System.Windows.Forms.Label();
             this.lblTimeLeft = new System.Windows.Forms.Label();
+            this.score = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // GameTimer
@@ -42,10 +44,11 @@
             // 
             // button1
             // 
+            this.button1.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.button1.ForeColor = System.Drawing.Color.Tomato;
-            this.button1.Location = new System.Drawing.Point(789, 29);
+            this.button1.Location = new System.Drawing.Point(732, 32);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(179, 59);
+            this.button1.Size = new System.Drawing.Size(245, 59);
             this.button1.TabIndex = 2;
             this.button1.Text = "Debut";
             this.button1.UseVisualStyleBackColor = true;
@@ -53,36 +56,51 @@
             // 
             // lblStatues
             // 
+            this.lblStatues.BackColor = System.Drawing.Color.Transparent;
+            this.lblStatues.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblStatues.ForeColor = System.Drawing.Color.DimGray;
-            this.lblStatues.Location = new System.Drawing.Point(804, 117);
+            this.lblStatues.Location = new System.Drawing.Point(748, 115);
             this.lblStatues.Name = "lblStatues";
-            this.lblStatues.Size = new System.Drawing.Size(136, 20);
+            this.lblStatues.Size = new System.Drawing.Size(267, 31);
             this.lblStatues.TabIndex = 3;
             this.lblStatues.Text = "Match or MisMatch";
             // 
             // lblTimeLeft
             // 
-            this.lblTimeLeft.Location = new System.Drawing.Point(804, 171);
+            this.lblTimeLeft.BackColor = System.Drawing.Color.Transparent;
+            this.lblTimeLeft.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTimeLeft.Location = new System.Drawing.Point(772, 160);
             this.lblTimeLeft.Name = "lblTimeLeft";
-            this.lblTimeLeft.Size = new System.Drawing.Size(124, 20);
+            this.lblTimeLeft.Size = new System.Drawing.Size(205, 56);
             this.lblTimeLeft.TabIndex = 4;
             this.lblTimeLeft.Text = "Temps rester :100";
             this.lblTimeLeft.Click += new System.EventHandler(this.lblTimeLeft_Click);
             // 
-            // Form2
+            // score
+            // 
+            this.score.AutoSize = true;
+            this.score.Location = new System.Drawing.Point(829, 333);
+            this.score.Name = "score";
+            this.score.Size = new System.Drawing.Size(0, 20);
+            this.score.TabIndex = 5;
+            // 
+            // facile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.BackgroundImage = global::menu.Properties.Resources.noir;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1013, 509);
+            this.Controls.Add(this.score);
             this.Controls.Add(this.lblTimeLeft);
             this.Controls.Add(this.lblStatues);
             this.Controls.Add(this.button1);
             this.ForeColor = System.Drawing.Color.IndianRed;
-            this.Name = "Form2";
+            this.Name = "facile";
             this.Text = "Form2";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -92,5 +110,6 @@
         private Button button1;
         private Label lblStatues;
         private Label lblTimeLeft;
+        private Label score;
     }
 }
